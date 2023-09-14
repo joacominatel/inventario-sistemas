@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Inventario</title>
+    <link rel="stylesheet" href="css/styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+      integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+  </head>
+  <body>
+    <nav class="navbar">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <button class="nav-link" id="btn-ingresar">
+            <i class="fas fa-home"></i>
+            <span class="link-text">Ingresar</span>
+          </button>
+        </li>
+        <li class="nav-item">
+          <button class="nav-link" id="btn-modificar">
+            <i class="fas fa-user"></i>
+            <span class="link-text">Modificar</span>
+          </button>
+        </li>
+        <li class="nav-item">
+          <button class="nav-link" id="btn-buscarporpc">
+            <i class="fas fa-computer"></i>
+            <span class="link-text">Dispositivo</span>
+          </button>
+        </li>
+        <li class="nav-item">
+          <button class="nav-link" id="btn-accesorios">
+            <i class="fas fa-cube"></i>
+            <span class="link-text">Accesorios</span>
+          </button>
+        </li>
+        <li class="nav-item">
+          <a href="./templates/rrhh.html" class="nav-link" id="btn-accesorios">
+            <i class="fas fa-person"></i>
+            <span class="link-text">RR. HH.</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+    <h1>Inventario de sistemas</h1>
+    <section id="seccion-ingresar-id" class="seccion-ingresar active">
+      <h2>Ingresar nuevo usuario</h2>
+      <p>
+        Complete el formulario con los datos del usuario y con su computadora
+      </p>
+      <form class="form-ingresar" action="php/insertar.php" method="post">
+        <label for="workday_id">Workday ID</label>
+        <input
+          type="workday_id"
+          name="workday_id"
+          id="workday_id"
+          placeholder="Workday ID"
+          required
+        />
+        <label for="nombre">Nombre</label>
+        <input
+          type="text"
+          name="nombre"
+          id="nombre"
+          placeholder="Nombre"
+          required
+        />
+        <label for="apellido">Apellido</label>
+        <input
+          type="text"
+          name="apellido"
+          id="apellido"
+          placeholder="Apellido"
+          required
+        />
+        <label for="marca">Marca</label>
+        <input
+          type="text"
+          name="marca"
+          id="marca"
+          placeholder="Marca"
+          required
+        />
+        <label for="modelo">Modelo</label>
+        <input
+          type="text"
+          name="modelo"
+          id="modelo"
+          placeholder="Modelo"
+          required
+        />
+        <label for="serie">Serie</label>
+        <input
+          type="text"
+          name="serie"
+          id="serie"
+          placeholder="Numero de Serie"
+          required
+        />
+        <input type="submit" value="Enviar" />
+      </form>
+    </section>
+    <section id="seccion-modificar-id" class="seccion-modificar">
+      <h2>Modificar usuario</h2>
+      <p>Busque el usuario a modificar</p>
+      <form class="form-modificar" action="php/buscar.php" method="post">
+        <label for="workday_id">Workday ID</label>
+        <input
+          type="text"
+          name="workday_id"
+          id="workday_id"
+          placeholder="Workday ID"
+          required
+        />
+        <input type="submit" value="Buscar" />
+      </form>
+    </section>
+    <section id="seccion-buscar-dispositivo" class="seccion-buscar">
+      <h2>Buscar por dispositivo</h2>
+      <form class="form-buscar" action="php/buscar_serie.php" method="post">
+        <label for="serie">Numero de serie</label>
+        <input
+          type="text"
+          name="serie"
+          id="serie"
+          placeholder="Numero de serie"
+          required
+        />
+        <input type="submit" value="Buscar" />
+      </form>
+    </section>
+    <section id="seccion-accesorios" class="seccion-accesorios">
+      <h2>Accesorios</h2>
+      <p>Agregar accesorio a un usuario</p>
+
+
+      <form
+        class="form-accesorios"
+        action="php/agregar_accesorio.php"
+        method="post"
+      >
+      
+        <h3>Agregar Accesorios</h3>
+        <label for="workday_id">Workday ID del usuario a modificar
+        </label>
+        <input
+          type="text"
+          name="workday_id"
+          id="workday_id"
+          placeholder="Workday ID"
+          required
+        />
+        <label for="auriculares">Auriculares</label>
+        <input
+          type="number"
+          name="auriculares"
+          id="auriculares"
+          min="0"
+          value="0"
+        />
+        <label for="monitor">Monitor</label>
+        <input type="number" name="monitor" id="monitor" min="0" value="0" />
+        <label for="mouse">Mouse</label>
+        <input type="number" name="mouse" id="mouse" min="0" value="0" />
+        <label for="teclado">Teclado</label>
+        <input type="number" name="teclado" id="teclado" min="0" value="0" />
+        <label for="otros">Otros</label>
+        <input type="number" name="otros" id="otros" min="0" value="0" />
+        <input type="submit" value="Guardar Cambios" />
+      </form>
+    </section>
+
+    <script src="js/app.js"></script>
+  </body>
+</html>
