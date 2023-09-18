@@ -25,11 +25,11 @@ if(isset($_POST['search'])){
                 $marca = $row['marca'];
                 $modelo = $row['modelo'];
                 $serie = $row['serie'];
-                echo "<li>Workday ID: $workday_id</li>";
-                echo "<li>Nombre: $nombre</li>";
-                echo "<li>Apellido: $apellido</li>";
+                echo "<li onclick='copiarAlPortapapeles(\"$workday_id\")'>Workday ID: <span class='listContent'>$workday_id</span></li>";
+                echo "<li onclick='copiarAlPortapapeles(\"$nombre\")'>Nombre: <span class='listContent'>$nombre</span></li>";
+                echo "<li onclick='copiarAlPortapapeles(\"$apellido\")'>Apellido: <span class='listContent'>$apellido</span></li>";
                 if (!empty($marca) && !empty($modelo) && !empty($serie)) {
-                    echo "<li>Computadora: $marca - $modelo - AR-$serie</li>";
+                    echo "<li onclick='copiarAlPortapapeles(\"$marca $modelo $serie\")'>Computadora: <span class='listContent'>$marca - $modelo - AR-$serie</span></li>";
                 }
             echo "</ul>";
         echo "</div>";

@@ -15,9 +15,15 @@ $query = "UPDATE usuarios SET nombre = '$nombre', apellido = '$apellido', marca 
 if ($conn->query($query) === TRUE) {
     echo "Actualizado correctamente";
     header("refresh:2; url=../index.html");
+
+    $command = "python3 ../scripts/generate_log.py \"$query\" $workday_id";
+    $output = shell_exec($command);
+    echo $output;
+    
 } else {
     echo "Error actualizando usuario: " . $conn->error;
 }
+
     
 $conn->close();
 ?>

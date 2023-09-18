@@ -32,6 +32,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if ($stmt->execute()) {
         echo "Datos insertados con éxito";
+
+        $command = "python3 ../scripts/generate_log.py \"$sql\" $workday_id";
+        $output = shell_exec($command);
+        echo $output;
+        
         } else {
             echo "Error al insertar datos: " . $stmt->error;
         }

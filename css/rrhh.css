@@ -87,3 +87,22 @@ nav {
 .resultado ul li {
     margin-bottom: 10px;
 }
+
+.resultado ul li span {
+    font-weight: bold;
+}
+
+.resultado ul li span:hover {
+    transition: all 0.3s ease-in-out;
+    color: blueviolet;
+    cursor: pointer;
+}
+
+.copiado-cartel {
+    position: absolute;
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    display: none;
+}

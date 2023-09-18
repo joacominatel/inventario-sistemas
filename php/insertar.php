@@ -13,6 +13,12 @@ $sql = "INSERT INTO usuarios (workday_id, nombre, apellido, marca, modelo, serie
 
 if ($conn->query($sql) === TRUE) {
     echo "Datos ingresados correctamente";
+
+    // Guardar logs
+    $command = "python3 ../scripts/generate_log.py \"$sql\" $workday_id";
+    $output = shell_exec($command);
+    echo $output;
+
 } else {
     echo "Error: " . $sql . "<br>" . $conn->error;
 }
