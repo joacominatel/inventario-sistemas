@@ -19,10 +19,15 @@ $(document).ready(function () {
 function copiarAlPortapapeles(texto) {
   const elementoTemp = document.createElement("textarea");
   elementoTemp.value = texto;
+
   document.body.appendChild(elementoTemp);
   elementoTemp.select();
+
   document.execCommand("copy");
   document.body.removeChild(elementoTemp);
+
+  const cartel = document.getElementById("copiadoCartel");
+  cartel.classList.add("active");
 
   mostrarMensaje("Copiado al portapapeles");
 }

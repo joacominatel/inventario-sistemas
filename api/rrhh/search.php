@@ -1,11 +1,9 @@
 <?php
-// Incluye el archivo de conexión a la base de datos
 include_once("../../php/db_connection.php");
 
 if (isset($_POST['search'])) {
-    $search = mysqli_real_escape_string($conn, $_POST['search']); // Evita la inyección SQL
+    $search = mysqli_real_escape_string($conn, $_POST['search']); 
 
-    // Utiliza consultas preparadas para mayor seguridad
     $query = "SELECT * FROM usuarios WHERE CONCAT(nombre, ' ', apellido) LIKE ? OR nombre LIKE ? OR apellido LIKE ? OR workday_id LIKE ?";
     $stmt = mysqli_prepare($conn, $query);
 
@@ -22,7 +20,7 @@ if (isset($_POST['search'])) {
     while ($row = mysqli_fetch_array($result)) {
         echo "<div class='resultado'>";
         echo "<ul>";
-        $workday_id = htmlspecialchars($row['workday_id']); // Evita problemas de seguridad
+        $workday_id = htmlspecialchars($row['workday_id']); 
         $nombre = htmlspecialchars($row['nombre']);
         $apellido = htmlspecialchars($row['apellido']);
         $marca = htmlspecialchars($row['marca']);
@@ -40,7 +38,6 @@ if (isset($_POST['search'])) {
         echo "</div>";
     }
 
-    // Cierra la consulta preparada y la conexión
     mysqli_stmt_close($stmt);
     mysqli_close($conn);
 }

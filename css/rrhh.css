@@ -99,12 +99,23 @@ nav {
 }
 
 .copiado-cartel {
-    position: absolute;
-    background-color: #4CAF50;
-    color: white;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgb(59, 182, 48);
+    color: #fff;
     padding: 10px;
     border-radius: 5px;
-    display: none;
+    z-index: 1000;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.3s ease-in-out;
+}
+
+.copiado-cartel.active {
+    opacity: 1;
+    pointer-events: all;
 }
 
 .btn-borrar {
