@@ -1,7 +1,7 @@
 $(document).ready(function () {
-  $("#search").keyup(function () {
+  $("#search").on("input", function () {
     var search = $(this).val();
-    if (search != "") {
+    if (search !== "") {
       $.ajax({
         url: "../api/rrhh/search.php",
         type: "POST",
@@ -16,7 +16,7 @@ $(document).ready(function () {
   });
 });
 
-function copiarAlPortapapeles(texto, elemento) {
+function copiarAlPortapapeles(texto) {
   const elementoTemp = document.createElement("textarea");
   elementoTemp.value = texto;
   document.body.appendChild(elementoTemp);
@@ -24,33 +24,33 @@ function copiarAlPortapapeles(texto, elemento) {
   document.execCommand("copy");
   document.body.removeChild(elementoTemp);
 
+  mostrarMensaje("Copiado al portapapeles");
+}
+
+function mostrarMensaje(mensaje) {
   const cartel = document.getElementById("copiadoCartel");
   cartel.style.display = "block";
 
   setTimeout(function () {
     cartel.style.display = "none";
   }, 1500);
+
+  console.log(mensaje);
 }
 
 function borrarUsuario(workday_id) {
-  if (
-    confirm(
-      "¿Estás seguro de que quieres borrar el usuario " + workday_id + "?"
-    )
-  ) {
-    // Borrar usuario
+  const confirmarBorrado = confirm(`¿Estás seguro de que quieres borrar el usuario ${workday_id}?`);
+
+  if (confirmarBorrado) {
     $.ajax({
       url: "../api/rrhh/borrar_user.php",
       type: "POST",
       data: { workday_id: workday_id },
       success: function (response) {
         if (response == 0) {
-          alert("No se ha podido borrar el usuario");
-          setTimeout(function () {
-            location.reload();
-          }, 2000);
+          mostrarMensaje("No se ha podido borrar el usuario");
         } else {
-          alert("Usuario borrado correctamente");
+          mostrarMensaje("Usuario borrado correctamente");
           setTimeout(function () {
             location.reload();
           }, 2000);
