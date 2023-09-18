@@ -32,6 +32,7 @@ if(isset($_POST['search'])){
                     echo "<li onclick='copiarAlPortapapeles(\"$marca $modelo $serie\")'>Computadora: <span class='listContent'>$marca - $modelo - AR-$serie</span></li>";
                 }
             echo "</ul>";
+            echo "<button class='btn-borrar' onclick='borrarUsuario(\"$workday_id\")'>Borrar</button>";
         echo "</div>";
     }
 }

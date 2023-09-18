@@ -106,3 +106,18 @@ nav {
     border-radius: 5px;
     display: none;
 }
+
+.btn-borrar {
+    background-color: #f44336;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+.btn-borrar:hover {
+    transition: all 0.3s ease-in-out;
+    background-color: #ff0000;
+}
