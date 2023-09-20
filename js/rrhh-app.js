@@ -48,7 +48,7 @@ function borrarUsuario(workday_id) {
 
   if (confirmarBorrado) {
     $.ajax({
-      url: "../api/rrhh/borrar_user.php",
+      url: "../api/rrhh/delete_user.php",
       type: "POST",
       data: { workday_id: workday_id },
       success: function (response) {
