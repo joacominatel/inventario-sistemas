@@ -26,12 +26,18 @@ if (isset($_POST['search'])) {
         $marca = htmlspecialchars($row['marca']);
         $modelo = htmlspecialchars($row['modelo']);
         $serie = htmlspecialchars($row['serie']);
+        $mail = htmlspecialchars($row['mail']);
         echo "<li onclick='copiarAlPortapapeles(\"$workday_id\")'>Workday ID: <span class='listContent'>$workday_id</span></li>";
         echo "<li onclick='copiarAlPortapapeles(\"$nombre\")'>Nombre: <span class='listContent'>$nombre</span></li>";
         echo "<li onclick='copiarAlPortapapeles(\"$apellido\")'>Apellido: <span class='listContent'>$apellido</span></li>";
         if (!empty($marca) && !empty($modelo) && !empty($serie)) {
             $computadoraInfo = "$marca - $modelo - AR-$serie";
             echo "<li onclick='copiarAlPortapapeles(\"$computadoraInfo\")'>Computadora: <span class='listContent'>$computadoraInfo</span></li>";
+        }
+        if (!empty($mail)) {
+            echo "<li onclick='copiarAlPortapapeles(\"$mail\")'>Mail: <span class='listContent'>$mail</span></li>";
+        } else {
+            echo "<li>Mail: <span class='listContent'> - </span></li>";
         }
         echo "</ul>";
         echo "<button class='btn-borrar' onclick='borrarUsuario(\"$workday_id\")'>Borrar</button>";
