@@ -116,8 +116,14 @@ form p {
     background-color: #777;
 }
 
+/* buscar.php */
+.btns-buscar {
+    display: flex;
+    gap: 20px;
+}
+
 .btn-modify {
-    width: 5rem;
+    width: auto;
     height: 3rem;
     border-radius: 0.5rem;
     border: none;
@@ -126,6 +132,13 @@ form p {
     font-size: 1rem;
     font-weight: 500;
     cursor: pointer;
+    text-align: center;
+    min-width: 5rem;
+    margin: 5px;
+    padding: 0 10px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
 }
 
 .btn-modify:hover {
