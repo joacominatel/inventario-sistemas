@@ -64,3 +64,33 @@ function borrarUsuario(workday_id) {
     });
   }
 }
+
+// Función para abrir el modal
+function abrirModal(workday_id) {
+  var modal = document.getElementById('modal-' + workday_id);
+  modal.style.display = 'block';
+}
+
+// Función para cerrar el modal
+function cerrarModal(workday_id) {
+  var modal = document.getElementById('modal-' + workday_id);
+  modal.style.display = 'none';
+}
+
+// Agregar eventos click a los botones "Ver más" y "Cerrar"
+var verMasButtons = document.getElementsByClassName('btn-verMas');
+var cerrarButtons = document.getElementsByClassName('close');
+
+for (var i = 0; i < verMasButtons.length; i++) {
+  verMasButtons[i].addEventListener('click', function (event) {
+      var workday_id = event.target.getAttribute('data-workday_id');
+      abrirModal(workday_id);
+  });
+}
+
+for (var i = 0; i < cerrarButtons.length; i++) {
+  cerrarButtons[i].addEventListener('click', function (event) {
+      var workday_id = event.target.getAttribute('data-workday_id');
+      cerrarModal(workday_id);
+  });
+}

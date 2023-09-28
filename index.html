@@ -29,12 +29,6 @@
           </button>
         </li>
         <li class="nav-item">
-          <button class="nav-link" id="btn-buscarporpc">
-            <i class="fas fa-computer"></i>
-            <span class="link-text">Dispositivo</span>
-          </button>
-        </li>
-        <li class="nav-item">
           <button class="nav-link" id="btn-accesorios">
             <i class="fas fa-cube"></i>
             <span class="link-text">Accesorios</span>
@@ -121,59 +115,38 @@
         <input type="submit" value="Buscar" />
       </form>
     </section>
-    <section id="seccion-buscar-dispositivo" class="seccion-buscar">
-      <h2>Buscar por dispositivo</h2>
-      <form class="form-buscar" action="php/buscar_serie.php" method="post">
-        <label for="serie">Numero de serie</label>
-        <input
-          type="text"
-          name="serie"
-          id="serie"
-          placeholder="Numero de serie"
-          required
-        />
-        <input type="submit" value="Buscar" />
-      </form>
-    </section>
     <section id="seccion-accesorios" class="seccion-accesorios">
       <h2>Accesorios</h2>
       <p>Agregar accesorio a un usuario</p>
 
+      <form class="form-accesorios" action="/php/add_accesory.php" method="POST">
 
-      <form
-        class="form-accesorios"
-        action="php/agregar_accesorio.php"
-        method="post"
-      >
-      
-        <h3>Agregar Accesorios</h3>
-        <label for="workday_id">Workday ID del usuario a modificar
-        </label>
-        <input
-          type="text"
-          name="workday_id"
-          id="workday_id"
-          placeholder="Workday ID"
-          required
-        />
-        <label for="auriculares">Auriculares</label>
-        <input
-          type="number"
-          name="auriculares"
-          id="auriculares"
-          min="0"
-          value="0"
-        />
-        <label for="monitor">Monitor</label>
-        <input type="number" name="monitor" id="monitor" min="0" value="0" />
-        <label for="mouse">Mouse</label>
-        <input type="number" name="mouse" id="mouse" min="0" value="0" />
-        <label for="teclado">Teclado</label>
-        <input type="number" name="teclado" id="teclado" min="0" value="0" />
-        <label for="otros">Otros</label>
-        <input type="number" name="otros" id="otros" min="0" value="0" />
-        <input type="submit" value="Guardar Cambios" />
+        <label for="workday_id">Workday ID</label>
+        <input type="text" name="workday_id" id="workday_id" placeholder="Workday ID" required>
+
+        <label for="nombre">Nombre y apellido</label>
+        <input type="text" name="nombre" id="nombre" placeholder="Nombre y apellido" required>
+
+        <label for="accesorio">Accesorio</label>
+        <select name="accesorio" id="accesorio" required>
+          <option value="monitor">Monitor</option>
+          <option value="mouse">Mouse</option>
+          <option value="silla">Silla</option>
+          <option value="teclado">Teclado</option>
+          <option value="auriculares">Auriculares</option>
+          <option value="otros">Otros</option>
+        </select>
+
+        <label for="detalle" id="label-detalle">Detalle</label>
+        <input type="text" name="detalle" id="detalle" placeholder="Detalle">
+
+        <label for="ticket" id="label-ticket">Ticket</label>
+        <input type="text" name="ticket" id="ticket" placeholder="Ticket">
+
+        <input type="submit" value="Agregar">
+
       </form>
+
     </section>
 
     <script src="js/app.js"></script>

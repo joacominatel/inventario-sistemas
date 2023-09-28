@@ -2,7 +2,6 @@ function toggleSection(sectionId) {
   const sections = [
     "seccion-ingresar-id",
     "seccion-modificar-id",
-    "seccion-buscar-dispositivo",
     "seccion-accesorios",
   ];
   for (const id of sections) {
@@ -23,11 +22,6 @@ document.getElementById("btn-modificar").addEventListener("click", function () {
   toggleSection("seccion-modificar-id");
 });
 
-document
-  .getElementById("btn-buscarporpc")
-  .addEventListener("click", function () {
-    toggleSection("seccion-buscar-dispositivo");
-  });
 
 document
   .getElementById("btn-accesorios")

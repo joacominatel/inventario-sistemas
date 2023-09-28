@@ -19,29 +19,67 @@ if (isset($_POST['search'])) {
 
     while ($row = mysqli_fetch_array($result)) {
         echo "<div class='resultado'>";
-        echo "<ul>";
-        $workday_id = htmlspecialchars($row['workday_id']); 
-        $nombre = htmlspecialchars($row['nombre']);
-        $apellido = htmlspecialchars($row['apellido']);
-        $marca = htmlspecialchars($row['marca']);
-        $modelo = htmlspecialchars($row['modelo']);
-        $serie = htmlspecialchars($row['serie']);
-        $mail = htmlspecialchars($row['mail']);
-        echo "<li onclick='copiarAlPortapapeles(\"$workday_id\")'>Workday ID: <span class='listContent'>$workday_id</span></li>";
-        echo "<li onclick='copiarAlPortapapeles(\"$nombre\")'>Nombre: <span class='listContent'>$nombre</span></li>";
-        echo "<li onclick='copiarAlPortapapeles(\"$apellido\")'>Apellido: <span class='listContent'>$apellido</span></li>";
-        if (!empty($marca) && !empty($modelo) && !empty($serie)) {
-            $computadoraInfo = "$marca - $modelo - AR-$serie";
-            echo "<li onclick='copiarAlPortapapeles(\"$computadoraInfo\")'>Computadora: <span class='listContent'>$computadoraInfo</span></li>";
-        }
-        if (!empty($mail)) {
-            echo "<li onclick='copiarAlPortapapeles(\"$mail\")'>Mail: <span class='listContent'>$mail</span></li>";
-        } else {
-            echo "<li>Mail: <span class='listContent'> - </span></li>";
-        }
-        echo "</ul>";
-        echo "<button class='btn-borrar' onclick='borrarUsuario(\"$workday_id\")'>Borrar</button>";
+            echo "<ul>";
+            
+                $workday_id = htmlspecialchars($row['workday_id']); 
+                $nombre = htmlspecialchars($row['nombre']);
+                $apellido = htmlspecialchars($row['apellido']);
+                $marca = htmlspecialchars($row['marca']);
+                $modelo = htmlspecialchars($row['modelo']);
+                $serie = htmlspecialchars($row['serie']);
+                $mail = htmlspecialchars($row['mail']);
+
+                echo "<li onclick='copiarAlPortapapeles(\"$workday_id\")'>Workday ID: <span class='listContent'>$workday_id</span></li>";
+                echo "<li onclick='copiarAlPortapapeles(\"$nombre\")'>Nombre: <span class='listContent'>$nombre</span></li>";
+                echo "<li onclick='copiarAlPortapapeles(\"$apellido\")'>Apellido: <span class='listContent'>$apellido</span></li>";
+                if (!empty($marca) && !empty($modelo) && !empty($serie)) {
+                    $computadoraInfo = "$marca - $modelo - AR-$serie";
+                    echo "<li onclick='copiarAlPortapapeles(\"$computadoraInfo\")'>Computadora: <span class='listContent'>$computadoraInfo</span></li>";
+                }
+                if (!empty($mail)) {
+                    echo "<li onclick='copiarAlPortapapeles(\"$mail\")'>Mail: <span class='listContent'>$mail</span></li>";
+                } else {
+                    echo "<li>Mail: <span class='listContent'> - </span></li>";
+                }
+            echo "</ul>";
+            echo "<button class='btn-borrar' onclick='borrarUsuario(\"$workday_id\")'>Borrar</button>";
+            echo "<button class='btn-verMas' onclick='abrirModal(\"$workday_id\")' data-workday_id='$workday_id'>Ver más</button>";
+            echo "</div>";
+
+        echo "<div id='modal-$workday_id' class='modal'>";
+            echo "<div class='modal-content'>";
+            echo "<span class='close' onclick='cerrarModal(\"$workday_id\")' data-workday_id='$workday_id'>&times;</span>";                
+            echo "<ul>";
+                    echo "<li>Workday ID: <span class='listContent'>$workday_id</span></li>";
+                    echo "<li>Nombre: <span class='listContent'>$nombre</span></li>";
+                    echo "<li>Apellido: <span class='listContent'>$apellido</span></li>";
+                    if (!empty($marca) && !empty($modelo) && !empty($serie)) {
+                        $computadoraInfo = "$marca - $modelo - AR-$serie";
+                        echo "<li>Computadora: <span class='listContent'>$computadoraInfo</span></li>";
+                    }
+                    if (!empty($mail)) {
+                        echo "<li>Mail: <span class='listContent'>$mail</span></li>";
+                    } else {
+                        echo "<li>Mail: <span class='listContent'> - </span></li>";
+                    }
+
+                    $sql_accesorios = "SELECT * FROM accesorios WHERE workday_id = '$workday_id'";
+                    $result_accesorios = mysqli_query($conn, $sql_accesorios);
+
+                    if (mysqli_num_rows($result_accesorios) > 0) {
+                        echo "<li>Accesorios: <span class='listContent'>";
+                        while ($row_accesorios = mysqli_fetch_assoc($result_accesorios)) {
+                            $accesorio = htmlspecialchars($row_accesorios['accesorio']);
+                            echo "$accesorio, ";
+                        }
+                        echo "</span></li>";
+                    } else {
+                        echo "<li>Accesorios: <span class='listContent'> - </span></li>";
+                    }
+                echo "</ul>";
+            echo "</div>";
         echo "</div>";
+
     }
 
     mysqli_stmt_close($stmt);
