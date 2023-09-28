@@ -39,7 +39,7 @@ if (isset($_POST['search'])) {
             echo "</ul>";
             echo "<div class='btns'>";
                 echo "<button class='btn-borrar' onclick='borrarUsuario(\"$workday_id\")'>Borrar</button>";
-                echo "<button class='btn-verMas' onclick='abrirModal(\"$workday_id\")' data-workday_id='$workday_id'>Ver más</button>";
+                echo "<button class='btn-verMas' onclick='abrirModal(\"$workday_id\")' data-workday_id='$workday_id'><i class=\"fa-solid fa-eye\"></i></button>";
             echo "</div>";
             echo "</div>";
 
