@@ -1,0 +1,2 @@
+Se ejecutó la sentencia: INSERT INTO usuarios (workday_id, nombre, apellido, marca, modelo, serie) VALUES (?, ?, ?, ?, ?, ?) con el workday id 63137823 en 2023-09-28 14:14:59
+Se ejecutó la sentencia: INSERT INTO usuarios (workday_id, nombre, apellido, marca, modelo, serie) VALUES (?, ?, ?, ?, ?, ?) con el workday id 3872 en 2023-09-28 14:35:23

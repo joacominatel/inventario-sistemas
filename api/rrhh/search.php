@@ -36,14 +36,11 @@ if (isset($_POST['search'])) {
                     $computadoraInfo = "$marca - $modelo - AR-$serie";
                     echo "<li onclick='copiarAlPortapapeles(\"$computadoraInfo\")'>Computadora: <span class='listContent'>$computadoraInfo</span></li>";
                 }
-                if (!empty($mail)) {
-                    echo "<li onclick='copiarAlPortapapeles(\"$mail\")'>Mail: <span class='listContent'>$mail</span></li>";
-                } else {
-                    echo "<li>Mail: <span class='listContent'> - </span></li>";
-                }
             echo "</ul>";
-            echo "<button class='btn-borrar' onclick='borrarUsuario(\"$workday_id\")'>Borrar</button>";
-            echo "<button class='btn-verMas' onclick='abrirModal(\"$workday_id\")' data-workday_id='$workday_id'>Ver más</button>";
+            echo "<div class='btns'>";
+                echo "<button class='btn-borrar' onclick='borrarUsuario(\"$workday_id\")'>Borrar</button>";
+                echo "<button class='btn-verMas' onclick='abrirModal(\"$workday_id\")' data-workday_id='$workday_id'>Ver más</button>";
+            echo "</div>";
             echo "</div>";
 
         echo "<div id='modal-$workday_id' class='modal'>";

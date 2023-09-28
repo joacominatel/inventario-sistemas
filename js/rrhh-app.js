@@ -65,19 +65,16 @@ function borrarUsuario(workday_id) {
   }
 }
 
-// Función para abrir el modal
 function abrirModal(workday_id) {
   var modal = document.getElementById('modal-' + workday_id);
   modal.style.display = 'block';
 }
 
-// Función para cerrar el modal
 function cerrarModal(workday_id) {
   var modal = document.getElementById('modal-' + workday_id);
   modal.style.display = 'none';
 }
 
-// Agregar eventos click a los botones "Ver más" y "Cerrar"
 var verMasButtons = document.getElementsByClassName('btn-verMas');
 var cerrarButtons = document.getElementsByClassName('close');
 

@@ -153,9 +153,7 @@ nav {
     display: none;
     justify-content: center;
     align-items: center;
-    opacity: 0;
-    pointer-events: none;
-    border-radius: 15px;
+    opacity: 1;
     transition: all 0.3s ease-in-out;
 }
 
@@ -171,6 +169,7 @@ nav {
     padding: 20px;
     border-radius: 5px;
     position: relative;
+    margin: auto;
 }
 
 .close {
@@ -196,4 +195,10 @@ nav {
 
 .modal-content ul li span {
     font-weight: bold;
+}
+
+.btns {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
 }
