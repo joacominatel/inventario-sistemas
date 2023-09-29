@@ -9,7 +9,8 @@ if (
     isset($_POST["marca"]) &&
     isset($_POST["modelo"]) &&
     isset($_POST["serie"]) &&
-    isset($_POST["mail"]) 
+    isset($_POST["mail"]) &&
+    isset($_POST["usuario"]) 
 ) {
     $workday_id = mysqli_real_escape_string($conn, $_POST["workday_id"]);
     $nombre = mysqli_real_escape_string($conn, $_POST["nombre"]);
@@ -18,11 +19,12 @@ if (
     $modelo = mysqli_real_escape_string($conn, $_POST["modelo"]);
     $serie = mysqli_real_escape_string($conn, $_POST["serie"]);
     $mail = mysqli_real_escape_string($conn, $_POST["mail"]);
+    $usuario = mysqli_real_escape_string($conn, $_POST["usuario"]);
 
     // Crea una consulta preparada para actualizar los datos
-    $query = "UPDATE usuarios SET nombre = ?, apellido = ?, marca = ?, modelo = ?, serie = ?, mail = ? WHERE workday_id = ?";
+    $query = "UPDATE usuarios SET nombre = ?, apellido = ?, marca = ?, modelo = ?, serie = ?, mail = ?, usuario = ? WHERE workday_id = ?";
     $stmt = mysqli_prepare($conn, $query);
-    mysqli_stmt_bind_param($stmt, 'sssssss', $nombre, $apellido, $marca, $modelo, $serie, $mail, $workday_id);
+    mysqli_stmt_bind_param($stmt, 'ssssssss', $nombre, $apellido, $marca, $modelo, $serie, $mail, $usuario, $workday_id);
 
     if (mysqli_stmt_execute($stmt)) {
         echo "Actualizado correctamente";

@@ -14,6 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $modelo = $data->modelo;
     $serie = $data->serie;
     $mail = $data->mail;
+    $usuario = $data->usuario;
 
     // Consulta para verificar si workday_id existe
     $sql = "SELECT workday_id FROM usuarios WHERE workday_id = '$workday_id'";
@@ -21,14 +22,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if ($result->num_rows > 0) {
         // Actualizar datos en la base de datos
-        $sql = "UPDATE usuarios SET nombre = ?, apellido = ?, marca = ?, modelo = ?, serie = ?, mail = ? WHERE workday_id = ?";
+        $sql = "UPDATE usuarios SET nombre = ?, apellido = ?, marca = ?, modelo = ?, serie = ?, mail = ?, usuario = ? WHERE workday_id = ?";
         $stmt = $conn->prepare($sql);
-        $stmt->bind_param("sssssss", $nombre, $apellido, $marca, $modelo, $serie, $mail, $workday_id);
+        $stmt->bind_param("ssssssss", $nombre, $apellido, $marca, $modelo, $serie, $mail, $usuario, $workday_id);
     } else {
         // Insertar datos en la base de datos
-        $sql = "INSERT INTO usuarios (workday_id, nombre, apellido, marca, modelo, serie, mail) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        $sql = "INSERT INTO usuarios (workday_id, nombre, apellido, marca, modelo, serie, mail, usuario) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = $conn->prepare($sql);
-        $stmt->bind_param("sssssss", $workday_id, $nombre, $apellido, $marca, $modelo, $serie, $mail);
+        $stmt->bind_param("sssssss", $workday_id, $nombre, $apellido, $marca, $modelo, $serie, $mail, $usuario);
     }
 
     if ($stmt->execute()) {

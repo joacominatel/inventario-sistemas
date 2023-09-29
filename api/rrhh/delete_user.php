@@ -18,11 +18,13 @@ if (isset($_POST['workday_id'])) {
     $marca = $row['marca'];
     $modelo = $row['modelo'];
     $serie = $row['serie'];
+    $mail = $row['mail'];
+    $usuario = $row['usuario'];
 
     // Utiliza prepared statements para evitar la inyección SQL
-    $insert_query = "INSERT INTO usuarios_borrados (workday_id, nombre, apellido, marca, modelo, serie) VALUES (?, ?, ?, ?, ?, ?)";
+    $insert_query = "INSERT INTO usuarios_borrados (workday_id, nombre, apellido, marca, modelo, serie, mail, usuario) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
     $insert_stmt = mysqli_prepare($conn, $insert_query);
-    mysqli_stmt_bind_param($insert_stmt, 'ssssss', $workday_id, $nombre, $apellido, $marca, $modelo, $serie);
+    mysqli_stmt_bind_param($insert_stmt, 'ssssssss', $workday_id, $nombre, $apellido, $marca, $modelo, $serie, $mail, $usuario);
 
     if (mysqli_stmt_execute($insert_stmt)) {
         $delete_query = "DELETE FROM usuarios WHERE workday_id = ?";

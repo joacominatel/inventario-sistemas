@@ -28,6 +28,7 @@ if (isset($_POST['search'])) {
                 $modelo = htmlspecialchars($row['modelo']);
                 $serie = htmlspecialchars($row['serie']);
                 $mail = htmlspecialchars($row['mail']);
+                $usuario = htmlspecialchars($row['usuario']);
 
                 echo "<li onclick='copiarAlPortapapeles(\"$workday_id\")'>Workday ID: <span class='listContent'>$workday_id</span></li>";
                 echo "<li onclick='copiarAlPortapapeles(\"$nombre\")'>Nombre: <span class='listContent'>$nombre</span></li>";
@@ -45,7 +46,8 @@ if (isset($_POST['search'])) {
 
         echo "<div id='modal-$workday_id' class='modal'>";
             echo "<div class='modal-content'>";
-            echo "<span class='close' onclick='cerrarModal(\"$workday_id\")' data-workday_id='$workday_id'>&times;</span>";                
+            echo "<span class='close' onclick='cerrarModal(\"$workday_id\")' data-workday_id='$workday_id'>&times;</span>";   
+            echo "<div class='titulo-modal' style='text-align: center;'><h2>Información</h2></div>";    
             echo "<ul>";
                     echo "<li>Workday ID: <span class='listContent'>$workday_id</span></li>";
                     echo "<li>Nombre: <span class='listContent'>$nombre</span></li>";
@@ -59,19 +61,26 @@ if (isset($_POST['search'])) {
                     } else {
                         echo "<li>Mail: <span class='listContent'> - </span></li>";
                     }
+                    if (!empty($usuario)) {
+                        echo "<li>Usuario: <span class='listContent'>$usuario</span></li>";
+                    } else {
+                        echo "<li>Usuario: <span class='listContent'> - </span></li>";
+                    }
 
                     $sql_accesorios = "SELECT * FROM accesorios WHERE workday_id = '$workday_id'";
                     $result_accesorios = mysqli_query($conn, $sql_accesorios);
 
                     if (mysqli_num_rows($result_accesorios) > 0) {
-                        echo "<li>Accesorios: <span class='listContent'>";
+                        echo "<div class='titulo-modal' style='text-align: center; margin-top: 20px;'><h2>Accesorios</h2></div>";
                         while ($row_accesorios = mysqli_fetch_assoc($result_accesorios)) {
                             $accesorio = htmlspecialchars($row_accesorios['accesorio']);
-                            echo "$accesorio, ";
+                            $detalle = htmlspecialchars($row_accesorios['detalle']);
+                            echo "<li><span class='listContent'>$accesorio</span>: ";
+                            echo "$detalle";
                         }
-                        echo "</span></li>";
+                        echo "</li>";
                     } else {
-                        echo "<li>Accesorios: <span class='listContent'> - </span></li>";
+                        echo "<li>Accesorios: <span class='listContent'> No tiene </span></li>";
                     }
                 echo "</ul>";
             echo "</div>";

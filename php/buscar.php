@@ -34,6 +34,8 @@ if(isset($workday_id) && is_numeric($workday_id)) {
                     <input type="text" name="serie" value="<?php echo $row['serie']; ?>">
                     <label for="mail">Mail:</label>
                     <input type="text" name="mail" value="<?php echo $row['mail']; ?>">
+                    <label for="usuario">Usuario:</label>
+                    <input type="text" name="usuario" value="<?php echo $row['usuario']; ?>">
                     <div class="btns-buscar">
                         <button class="btn-modify" type="submit">Modificar Usuario</button>
                         <a class="btn-modify" href="../index.html">Volver</a>
