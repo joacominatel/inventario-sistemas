@@ -1,9 +1,7 @@
 <?php
 include_once '../php/db_connection.php';
 
-// Verificar si la solicitud es un POST
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Leer el JSON desde la solicitud
     $data = json_decode(file_get_contents("php://input"));
     
     // Obtener los valores del JSON
@@ -16,7 +14,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $mail = $data->mail;
     $usuario = $data->usuario;
 
-    // Consulta para verificar si workday_id existe
     $sql = "SELECT workday_id FROM usuarios WHERE workday_id = '$workday_id'";
     $result = $conn->query($sql);
 
@@ -29,7 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Insertar datos en la base de datos
         $sql = "INSERT INTO usuarios (workday_id, nombre, apellido, marca, modelo, serie, mail, usuario) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = $conn->prepare($sql);
-        $stmt->bind_param("sssssss", $workday_id, $nombre, $apellido, $marca, $modelo, $serie, $mail, $usuario);
+        $stmt->bind_param("ssssssss", $workday_id, $nombre, $apellido, $marca, $modelo, $serie, $mail, $usuario);
     }
 
     if ($stmt->execute()) {
@@ -45,7 +42,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         $stmt->close();
     } elseif ($_SERVER['REQUEST_METHOD'] === 'GET') {
-        echo "Ok. 200";
+        $sql = "SELECT * FROM usuarios";
+        $result = $conn->query($sql);
+
+        if ($result->num_rows > 0) {
+            $usuarios = array();
+            while ($row = $result->fetch_assoc()) {
+                $usuarios[] = $row;
+            }
+            echo json_encode($usuarios);
+        } else {
+            echo "No se encontraron resultados";
+        }
     } else {
     echo "error: " . $_SERVER['REQUEST_METHOD'] . " no es un método válido";
 }

@@ -4,7 +4,7 @@ import datetime
 
 # Obtén los valores de $sql y $workday_id desde PHP
 if len(sys.argv) != 3:
-    print("Uso: ./agregar_log.py sql workday_id")
+    print("Uso: ./generate_log.py sql workday_id")
     sys.exit(1)
 
 sql = sys.argv[1]

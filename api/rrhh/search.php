@@ -17,6 +17,10 @@ if (isset($_POST['search'])) {
         die('Query Error: ' . mysqli_error($conn));
     }
 
+    $total = mysqli_num_rows($result);
+    echo "<div class='cantidad-resultados'>";
+        echo "<p>Se encontraron $total resultados</p>";
+    echo "</div>";
     while ($row = mysqli_fetch_array($result)) {
         echo "<div class='resultado'>";
             echo "<ul>";

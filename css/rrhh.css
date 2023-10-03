@@ -35,29 +35,6 @@ nav {
     outline: none;
 }
 
-.search button {
-    border-radius: 4px;
-    background-color: blueviolet;
-    color: #fff;
-    font-family: 'Courier New', Courier, monospace;
-    font-weight: bold;
-    padding: 10px;
-    font-size: 16px;
-    cursor: pointer;
-    margin-left: 5px;
-    display: none;
-}
-
-.search button:focus {
-    outline: none;
-}
-
-.search button:hover {
-    transition: all 0.3s ease-in-out;
-    /* color: #000; */
-    background-color: rgb(101, 23, 173);
-}
-
 #resultados {
     width: 100%;
     padding: 20px;
@@ -65,6 +42,18 @@ nav {
     flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
+}
+
+.cantidad-resultados {
+    width: 100%;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.cantidad-resultados p {
+    font-weight: bold;
+    font-size: 16px;
 }
 
 .resultado {
