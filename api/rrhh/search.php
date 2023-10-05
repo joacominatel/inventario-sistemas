@@ -43,8 +43,8 @@ if (isset($_POST['search'])) {
                 }
             echo "</ul>";
             echo "<div class='btns'>";
-                echo "<button class='btn-borrar' onclick='borrarUsuario(\"$workday_id\")'>Borrar</button>";
                 echo "<button class='btn-verMas' onclick='abrirModal(\"$workday_id\")' data-workday_id='$workday_id'><i class=\"fa-solid fa-eye\"></i></button>";
+                echo "<a href='../../inventario-sistemas/templates/baja.php?workday_id=$workday_id' class='btn-baja'><i class=\"fa-solid fa-print\"></i></a>";
             echo "</div>";
             echo "</div>";
 
@@ -78,6 +78,7 @@ if (isset($_POST['search'])) {
                         echo "<div class='titulo-modal' style='text-align: center; margin-top: 20px;'><h2>Accesorios</h2></div>";
                         while ($row_accesorios = mysqli_fetch_assoc($result_accesorios)) {
                             $accesorio = htmlspecialchars($row_accesorios['accesorio']);
+                            $accesorio = ucfirst($accesorio);
                             $detalle = htmlspecialchars($row_accesorios['detalle']);
                             echo "<li><span class='listContent'>$accesorio</span>: ";
                             echo "$detalle";

@@ -108,8 +108,8 @@ nav {
     pointer-events: all;
 }
 
-.btn-borrar {
-    background-color: #f44336;
+.btn-baja {
+    background-color: #f3e038;
     color: white;
     padding: 10px;
     border-radius: 5px;
@@ -118,9 +118,9 @@ nav {
     margin-left: 10px;
 }
 
-.btn-borrar:hover {
+.btn-baja:hover {
     transition: all 0.3s ease-in-out;
-    background-color: #ff0000;
+    background-color: #d3c120;
 }
 
 .btn-verMas {
@@ -131,6 +131,11 @@ nav {
     border: none;
     cursor: pointer;
     margin-left: 10px;
+}
+
+.btn-verMas:hover {
+    transition: all 0.3s ease-in-out;
+    background-color: #791ecf;
 }
 
 .modal {
