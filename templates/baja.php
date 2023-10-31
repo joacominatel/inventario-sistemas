@@ -88,6 +88,7 @@ $computadora = "$marca - $modelo - $serie";
                 <img src="../img/firma-admin.png" alt="Firma del administrador">
             </div>
         </div>
+        <button class="btn-imprimir" onclick="window.print()">Imprimir</button>
     </div>
     <script src="../js/baja.js"></script>
 </body>
