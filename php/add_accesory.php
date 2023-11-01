@@ -20,11 +20,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if ($stmt->execute()) {
         header("Location: ../index.html");
-
-        $command = "python3 ../scripts/generate_log.py \"$sql\" $workday_id";
-        $output = shell_exec($command);
-        echo $output;
-
         exit(); 
     } else {
         echo "Error al insertar los datos: " . $stmt->error;

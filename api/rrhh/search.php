@@ -44,7 +44,7 @@ if (isset($_POST['search'])) {
             echo "</ul>";
             echo "<div class='btns'>";
                 echo "<button class='btn-verMas' onclick='abrirModal(\"$workday_id\")' data-workday_id='$workday_id'><i class=\"fa-solid fa-eye\"></i></button>";
-                echo "<a href='../../inventario-sistemas/templates/baja.php?workday_id=$workday_id' class='btn-baja'><i class=\"fa-solid fa-print\"></i></a>";
+                echo "<a href='../../inventario-dentsu/templates/baja.php?workday_id=$workday_id' class='btn-baja' target='_blank'><i class=\"fa-solid fa-print\"></i></a>";
             echo "</div>";
             echo "</div>";
 

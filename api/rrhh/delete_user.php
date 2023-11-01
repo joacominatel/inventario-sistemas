@@ -21,6 +21,7 @@ if (isset($_POST['workday_id'])) {
     $mail = $row['mail'];
     $usuario = $row['usuario'];
 
+    // Utiliza prepared statements para evitar la inyección SQL
     $insert_query = "INSERT INTO usuarios_borrados (workday_id, nombre, apellido, marca, modelo, serie, mail, usuario) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
     $insert_stmt = mysqli_prepare($conn, $insert_query);
     mysqli_stmt_bind_param($insert_stmt, 'ssssssss', $workday_id, $nombre, $apellido, $marca, $modelo, $serie, $mail, $usuario);
