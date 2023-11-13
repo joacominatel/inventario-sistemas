@@ -10,7 +10,8 @@ if len(sys.argv) != 3:
 sql = sys.argv[1]
 workday_id = sys.argv[2]
 
-log_file = "../logs/registro.log"
+# Leer path actual en linux
+log_file = "/home/pguzman/inventario-dentsu/logs/registro.log"
 timestamp = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
 # Mensaje personalizado que se agregará al registro
@@ -19,5 +20,3 @@ message = f"Se ejecutó la sentencia: {sql} con el workday id {workday_id} en {t
 # Abre el archivo en modo de adición (si no existe, se crea)
 with open(log_file, "a") as f:
     f.write(message + "\n")
-
-print("Registro agregado exitosamente.")

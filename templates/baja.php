@@ -50,36 +50,39 @@ $computadora = "$marca - $modelo - $serie";
     </div>
     <div class="equipo-devolver">
         <table class="tabla-equipo">
-            <tr>
-                <th>Equipo</th>
-                <th>Detalle</th>
-                <th>Devolucion</th>
-            </tr>
-            <tr>
-                <td><?php echo "$marca $modelo"; ?></td>
-                <td><?php echo $serie; ?></td>
-                <td><input type="date" name="fecha-devolucion" id="fecha-devolucion"></td>
-            </tr>
-            <?php 
-            $query = "SELECT * FROM accesorios WHERE workday_id = ?";
-            $stmt = mysqli_prepare($conn, $query);
-            mysqli_stmt_bind_param($stmt, 's', $workday_id);
-            mysqli_stmt_execute($stmt);
-            $result = mysqli_stmt_get_result($stmt);
-
-            if ($result->num_rows > 0) {
-                while ($row = $result->fetch_assoc()) {
-                    $accesorio = $row['accesorio'];
-                    $detalle = $row['detalle'];
-                    echo "<tr>";
-                        echo "<td>$accesorio</td>";
-                        echo "<td>$detalle</td>";
-                        echo "<td><input type='date' name='fecha-devolucion' id='fecha-devolucion'></td>";
-                    echo "</tr>";
+            <tbody>
+                <tr>
+                    <th>Equipo</th>
+                    <th>Detalle</th>
+                    <th>Devolucion</th>
+                </tr>
+                <tr>
+                    <td contenteditable='true'><?php echo "$marca $modelo"; ?></td>
+                    <td contenteditable='true'><?php echo $serie; ?></td>
+                    <td><input type="date" name="fecha-devolucion" id="fecha-devolucion"></td>
+                </tr>
+                <?php 
+                $query = "SELECT * FROM accesorios WHERE workday_id = ?";
+                $stmt = mysqli_prepare($conn, $query);
+                mysqli_stmt_bind_param($stmt, 's', $workday_id);
+                mysqli_stmt_execute($stmt);
+                $result = mysqli_stmt_get_result($stmt);
+                
+                if ($result->num_rows > 0) {
+                    while ($row = $result->fetch_assoc()) {
+                        $accesorio = $row['accesorio'];
+                        $detalle = $row['detalle'];
+                        echo "<tr>";
+                        echo "<td contenteditable='true'>$accesorio</td>";
+                        echo "<td contenteditable='true'>$detalle</td>";
+                        echo "<td contenteditable='true'><input type='date' name='fecha-devolucion' id='fecha-devolucion'></td>";
+                        echo "</tr>";
+                    }
                 }
-            }
-            ?>
+                ?>
+            </tbody>    
         </table>
+        <button onclick="addRow()" class="add-row-button">+</button>
         <div class="firmas">
             <div class="firma-usuario">
                 <img src="../img/firma-usuario.png" alt="Firma del usuario">

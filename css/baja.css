@@ -175,6 +175,14 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 -webkit-print-color-adjust: exact;
 }  
 
+.add-row-button {
+    display: none;
+}
+
+#delete-button {
+    display: none;
+}
+
 }
 
 table * {
@@ -184,4 +192,28 @@ table * {
   font-family:'arial';
   text-align:center
     
+}
+
+.add-row-button {
+    font-size: 16px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.add-row-button:hover {
+    transition: all 0.4s ease 0s;
+    background-color: #3e8e41;
+    color: #fff;
+}
+
+.delete-row {
+     cursor: pointer;
+     color: red;
+}
+
+#delete-button:hover {
+    transition: all 0.4s ease 0s;
+    background-color: rgb(255, 144, 144);
 }

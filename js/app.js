@@ -3,6 +3,7 @@ function toggleSection(sectionId) {
     "seccion-ingresar-id",
     "seccion-modificar-id",
     "seccion-accesorios",
+    "seccion-borrar"
   ];
   for (const id of sections) {
     const section = document.getElementById(id);
@@ -28,3 +29,7 @@ document
   .addEventListener("click", function () {
     toggleSection("seccion-accesorios");
   });
+
+document.getElementById("btn-borrar").addEventListener("click", function () {
+  toggleSection("seccion-borrar");
+});
