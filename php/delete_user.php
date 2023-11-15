@@ -1,35 +1,26 @@
 <?php
-require_once 'db_connection.php';
+include 'db_connection.php';
 
-$workday_id = $_POST['workday_id'];
-echo $workday_id;
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $workday_id = $conn->real_escape_string($_POST['workday_id']);
 
-// Verificar si se envió un ID válido
-if(isset($workday_id) && is_numeric($workday_id)) {
-    $sql = "SELECT * FROM usuarios WHERE workday_id = $workday_id";
-    $result = mysqli_query($conn, $sql);
+    // Iniciar transacción
+    $conn->begin_transaction();
 
-    if($result && mysqli_num_rows($result) > 0) {
-        $row = mysqli_fetch_assoc($result);
+    try {
+        $sql = "INSERT INTO usuarios_borrados SELECT * FROM usuarios WHERE workday_id = '$workday_id'";
+        $conn->query($sql);
 
-        // mover a la base de datos de usuarios eliminados
-        $sql = "INSERT INTO usuarios_borrados (workday_id, nombre, apellido, marca, modelo, serie, mail, usuario) VALUES ('$row[workday_id]', '$row[nombre]', '$row[apellido]', '$row[marca]', '$row[modelo]', '$row[serie]', '$row[mail]', '$row[usuario]')";
-        $result = mysqli_query($conn, $sql);
-        $sql = "DELETE FROM usuarios WHERE workday_id = $workday_id";
-        $result = mysqli_query($conn, $sql);
-        echo "Usuario eliminado correctamente.";
+        $sql = "DELETE FROM usuarios WHERE workday_id = '$workday_id'";
+        $conn->query($sql);
 
-        // retornar despues de 2 segundos
-        header('Refresh: 2; URL = ../index.html');
-    } else {
-        echo "No se encontraron datos para el ID proporcionado.";
+        $conn->commit();
+        echo "Usuario borrado con éxito";
+    } catch (Exception $e) {
+        $conn->rollback();
+        echo "Error al borrar usuario: " . $e->getMessage();
     }
 
-    mysqli_free_result($result);
-
-} else {
-    echo "ID no válido. $workday_id";
+    $conn->close();
 }
-
-mysqli_close($conn);
 ?>

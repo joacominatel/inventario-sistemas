@@ -43,28 +43,6 @@ function mostrarMensaje(mensaje) {
   console.log(mensaje);
 }
 
-function borrarUsuario(workday_id) {
-  const confirmarBorrado = confirm(`¿Estás seguro de que quieres borrar el usuario ${workday_id}?`);
-
-  if (confirmarBorrado) {
-    $.ajax({
-      url: "../api/rrhh/delete_user.php",
-      type: "POST",
-      data: { workday_id: workday_id },
-      success: function (response) {
-        if (response == 0) {
-          mostrarMensaje("No se ha podido borrar el usuario");
-        } else {
-          mostrarMensaje("Usuario borrado correctamente");
-          setTimeout(function () {
-            location.reload();
-          }, 2000);
-        }
-      },
-    });
-  }
-}
-
 function abrirModal(workday_id) {
   var modal = document.getElementById('modal-' + workday_id);
   modal.style.display = 'block';

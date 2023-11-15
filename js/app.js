@@ -1,35 +1,39 @@
-function toggleSection(sectionId) {
-  const sections = [
-    "seccion-ingresar-id",
-    "seccion-modificar-id",
-    "seccion-accesorios",
-    "seccion-borrar"
-  ];
-  for (const id of sections) {
-    const section = document.getElementById(id);
-    if (id === sectionId) {
-      section.classList.add("active");
-    } else {
-      section.classList.remove("active");
-    }
-  }
-}
+const sideLinks = document.querySelectorAll(
+  ".sidebar .side-menu li a:not(.logout)"
+);
 
-document.getElementById("btn-ingresar").addEventListener("click", function () {
-  toggleSection("seccion-ingresar-id");
-});
-
-document.getElementById("btn-modificar").addEventListener("click", function () {
-  toggleSection("seccion-modificar-id");
-});
-
-
-document
-  .getElementById("btn-accesorios")
-  .addEventListener("click", function () {
-    toggleSection("seccion-accesorios");
+sideLinks.forEach((item) => {
+  const li = item.parentElement;
+  item.addEventListener("click", () => {
+    sideLinks.forEach((i) => {
+      i.parentElement.classList.remove("active");
+    });
+    li.classList.add("active");
   });
-
-document.getElementById("btn-borrar").addEventListener("click", function () {
-  toggleSection("seccion-borrar");
 });
+
+const menuBar = document.querySelector(".content nav .fas.fa-bars-staggered");
+const sideBar = document.querySelector(".sidebar");
+
+menuBar.addEventListener("click", () => {
+  sideBar.classList.toggle("close");
+});
+
+window.addEventListener("resize", () => {
+  if (window.innerWidth < 768) {
+    sideBar.classList.add("close");
+  } else {
+    sideBar.classList.remove("close");
+  }
+});
+
+const toggler = document.getElementById("theme-toggle");
+
+toggler.addEventListener("change", function () {
+  if (this.checked) {
+    document.body.classList.add("dark");
+  } else {
+    document.body.classList.remove("dark");
+  }
+});
+
