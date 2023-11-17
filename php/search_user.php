@@ -14,15 +14,15 @@ if($search != ''){
 
     while($row = mysqli_fetch_assoc($result)) {
         echo "<div class='search-result-item'>";
-        echo "<div class='user-checkbox-container'>";
-            echo "<input type='checkbox' class='user-checkbox' value='".$row['workday_id']."'>";
-            echo "<span>".$row['nombre']." ".$row['apellido']." (".$row['workday_id'].")</span>";
-        echo "</div>";
-        echo "<div class='search-result-item-actions'>";
-        // echo "<i class='fas fa-eye'></i>";
-        echo "<i class='fas fa-edit'></i>";
-        echo "<i class='fas fa-trash-alt'></i>";
-        echo "</div>";
+            echo "<div class='user-checkbox-container'>";
+                echo "<input type='checkbox' class='user-checkbox' value='".$row['workday_id']."'>";
+                echo "<span>".$row['nombre']." ".$row['apellido']." (".$row['workday_id'].")</span>";
+            echo "</div>";
+            echo "<div class='search-result-item-actions'>";
+                echo "<a href='templates/baja.php?workday_id=".$row['workday_id']."' class='btn-baja' target='_blank'><i class=\"fa-solid fa-print\"></i></a>";
+                echo "<i class='fas fa-edit'></i>";
+                echo "<i class='fas fa-trash-alt'></i>";
+            echo "</div>";
         echo "</div>";
     }
     mysqli_close($conn);
