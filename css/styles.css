@@ -466,7 +466,6 @@ body {
   align-items: center;
   grid-gap: 16px;
 }
-
 .content main .bottom-data .user-info .header i {
   background-color: var(--success);
   color: var(--light);
@@ -518,6 +517,51 @@ body {
   justify-content: space-between;
   padding: 1rem;
   border-radius: 12px;
+}
+
+#search-results .search-result-item .user-checkbox-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  align-items: center;
+  gap: 22px;
+}
+
+
+#search-results .search-result-item .user-checkbox-container input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 1px solid var(--primary);
+  cursor: pointer;
+}
+
+#search-results .search-result-item .user-checkbox-container input[type="checkbox"]:checked {
+  background-color: var(--primary);
+}
+
+#search-results .search-result-item .user-checkbox-container input[type="checkbox"]:checked::after {
+  content: "";
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: var(--light);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+#search-results .search-result-item .user-checkbox-container input[type="checkbox"]:checked::before {
+  content: "";
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: var(--primary);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 #search-results .search-result-item span{
@@ -851,4 +895,123 @@ body {
   0% { transform: scale(1); }
   50% { transform: scale(1.1); }
   100% { transform: scale(1); }
+}
+
+.agregar-accesorio {
+  display: none;
+  position: fixed;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
+  width: 400px;
+  background: var(--light);
+  border-radius: 20px;
+  padding: 24px;
+  z-index: 10000;
+  border: 1px solid var(--primary);
+}
+
+.agregar-accesorio h2{
+  color: var(--dark);
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+
+}
+
+#close-add-accessory {
+  /* close button */
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  font-size: 1.5rem;
+  color: var(--danger);
+  cursor: pointer;
+}
+
+#add-accessory {
+  background-color: var(--success);
+  color: var(--light);
+  padding: 0.7rem;
+  font-size: 14px;
+  border-radius: 50%;
+}
+
+#add-accessory:hover {
+  transition: all 0.3s ease;
+  background-color: var(--light-success);
+  color: var(--success);
+}
+
+#filter-accessory {
+  background-color: var(--primary);
+  color: var(--light);
+  padding: 0.7rem;
+  font-size: 14px;
+  border-radius: 50%;
+}
+
+#filter-accessory:hover {
+  transition: all 0.3s ease;
+  background-color: var(--light-primary);
+  color: var(--primary);
+}
+
+.agregar-accesorio form {
+  width: 76%;
+  margin: 0 auto;
+}
+
+.agregar-accesorio form input {
+  width: 100%;
+  height: 36px;
+  padding: 0 16px;
+  border: none;
+  background: var(--grey);
+  border-radius: 36px;
+  outline: none;
+  color: var(--dark);
+  margin-bottom: 16px;
+}
+
+.agregar-accesorio form input::placeholder {
+  color: var(--dark-grey);
+}
+
+.agregar-accesorio form input:focus {
+  border: 1px solid var(--primary);
+}
+
+.agregar-accesorio form select {
+  width: 100%;
+  height: 36px;
+  padding: 0 16px;
+  border: none;
+  background: var(--grey);
+  border-radius: 36px;
+  outline: none;
+  color: var(--dark);
+  margin-bottom: 16px;
+}
+
+.agregar-accesorio form select::placeholder {
+  color: var(--dark-grey);
+}
+
+.agregar-accesorio form select:focus {
+  border: 1px solid var(--primary);
+}
+
+.agregar-accesorio form input:last-child:hover {
+  transition: all 0.3s ease;
+  cursor: pointer;
+  background: var(--primary);
+}
+
+.agregar-accesorio form input:last-child:hover::placeholder {
+  color: var(--light);
+}
+
+.agregar-accesorio form input:last-child:hover:focus {
+  border: 1px solid var(--light);
 }

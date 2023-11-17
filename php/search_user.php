@@ -14,7 +14,10 @@ if($search != ''){
 
     while($row = mysqli_fetch_assoc($result)) {
         echo "<div class='search-result-item'>";
-        echo "<span>".$row['nombre']." ".$row['apellido']." (".$row['workday_id'].")</span>";
+        echo "<div class='user-checkbox-container'>";
+            echo "<input type='checkbox' class='user-checkbox' value='".$row['workday_id']."'>";
+            echo "<span>".$row['nombre']." ".$row['apellido']." (".$row['workday_id'].")</span>";
+        echo "</div>";
         echo "<div class='search-result-item-actions'>";
         // echo "<i class='fas fa-eye'></i>";
         echo "<i class='fas fa-edit'></i>";

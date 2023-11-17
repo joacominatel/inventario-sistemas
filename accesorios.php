@@ -1,3 +1,31 @@
+<?php
+include_once './php/db_connection.php';
+
+// obtener cantidad de accesorios donde la columna sea accesorio y el valor sea monitor
+$sql = "SELECT COUNT(*) AS total FROM accesorios WHERE accesorio = 'monitor'";
+$result = mysqli_query($conn, $sql);
+$row = mysqli_fetch_assoc($result);
+$total_monitores = $row['total'];
+
+// Celular
+$sql = "SELECT COUNT(*) AS total FROM accesorios WHERE accesorio = 'celular'";
+$result = mysqli_query($conn, $sql);
+$row = mysqli_fetch_assoc($result);
+$total_celulares = $row['total'];
+
+// Auriculares
+$sql = "SELECT COUNT(*) AS total FROM accesorios WHERE accesorio = 'auriculares'";
+$result = mysqli_query($conn, $sql);
+$row = mysqli_fetch_assoc($result);
+$total_auriculares = $row['total'];
+
+// Otros + mouse + silla
+$sql = "SELECT COUNT(*) AS total FROM accesorios WHERE accesorio = 'otros' OR accesorio = 'mouse' OR accesorio = 'silla'";
+$result = mysqli_query($conn, $sql);
+$row = mysqli_fetch_assoc($result);
+$total_otros = $row['total'];
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -21,9 +49,10 @@
         </a>
         <ul class="side-menu">
             <li><a href="/inventario-sistemas"><i class='bx bxs-dashboard'></i>Inicio</a></li>
-            <li ><a href="/inventario-sistemas/usuarios.php"><i class='bx bx-group'></i>Usuarios</a></li>
-            <li ><a href="/inventario-sistemas/usuarios_borrados.php"><i class='bx bx-analyse'></i>Borrados</a></li>
-            <li class="active"><a href="/inventario-sistemas/accesorios.php"><i class='bx bx-message-square-dots'></i>Accesorios</a></li>
+            <li><a href="/inventario-sistemas/usuarios.php"><i class='bx bx-group'></i>Usuarios</a></li>
+            <li><a href="/inventario-sistemas/usuarios_borrados.php"><i class='bx bx-analyse'></i>Borrados</a></li>
+            <li class="active"><a href="/inventario-sistemas/accesorios.php"><i
+                        class='bx bx-message-square-dots'></i>Accesorios</a></li>
         </ul>
     </div>
 
@@ -33,11 +62,100 @@
             <input type="checkbox" id="theme-toggle" hidden>
             <label for="theme-toggle" class="theme-toggle"></label>
         </nav>
-        <main>
 
+        <main>
+            <ul class="insights">
+                <li class="accesorios-item" data-accesorio="monitor">
+                    <i class="fa-solid fa-desktop"></i>
+                    <span class="info">
+                        <h3>
+                            <?php echo $total_monitores; ?>
+                        </h3>
+                        <p>Monitores</p>
+                    </span>
+                </li>
+                <li class="accesorios-item" data-accesorio="celular">
+                    <i class='fas fa-phone'></i>
+                    <span class="info">
+                        <h3>
+                            <?php echo $total_celulares; ?>
+                        </h3>
+                        <p>Celulares</p>
+                    </span>
+                </li>
+                <li class="accesorios-item" data-accesorio="auriculares"><i class='fas fa-headphones'></i>
+                    <span class="info">
+                        <h3>
+                            <?php echo $total_auriculares; ?>
+                        </h3>
+                        <p>Auriculares</p>
+                    </span>
+                </li>
+                <li class="accesorios-item" data-accesorio="otros"><i class='fas fa-computer-mouse'></i>
+                    <span class="info">
+                        <h3>
+                            <?php echo $total_otros; ?>
+                        </h3>
+                        <p>Otros</p>
+                    </span>
+                </li>
+            </ul>
+
+            <div class="bottom-data">
+                <div class="orders">
+                    <div class="header">
+                        <h2>Accesorios</h2>
+                        <div class="functions">
+                            <i id="add-accessory" class="fas fa-plus"></i>
+                        </div>
+                    </div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Workday ID</th>
+                                <th>Nombre</th>
+                                <th>Accesorio</th>
+                                <th>Detalle</th>
+                            </tr>
+                        </thead>
+                        <tbody id="bottom-data-accesorios">
+                            <!-- <tr>
+                                <td>workday_id</td>
+                                <td>nombre</td>
+                                <td>accesorio</td>
+                                <td>detalle</td>
+                            </tr> -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </main>
+    </div>
+
+    <div class="agregar-accesorio" id="agregar-accesorio">
+        <h2>Agregar Accesorio</h2>
+        <i id="close-add-accessory" class="fas fa-times"></i>
+        <form action="php/add_accesory.php" class="form-agregar-accesorio">
+            <input type="text" name="workday_id" id="workday_id" placeholder="Workday ID" required>
+            <input type="text" name="nombre" id="nombre" placeholder="Nombre y apellido" required>
+            <select name="accesorio" id="accesorio" required>
+                <option value="" disabled selected>Accesorio</option>
+                <option value="Monitor">Monitor</option>
+                <option value="Celular">Celular</option>
+                <option value="Auriculares">Auriculares</option>
+                <option value="Mouse">Mouse</option>
+                <option value="Silla">Silla</option>
+                <option value="otros">Otros</option>
+            </select>
+            <input type="text" name="detalle" id="detalle" placeholder="Detalle" required>
+            <input type="text" name="ticket" id="ticket" placeholder="Ticket">
+            <input type="submit" value="Agregar">
+        </form>
+    </div>
+
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script src="./js/app.js"></script>
+        <script src="./js/accesorios.js"></script>
 </body>
 
 </html>

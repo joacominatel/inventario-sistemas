@@ -146,3 +146,40 @@ $(document).ready(function () {
     $('#editUserModal').hide();
   });
   
+  $(document).on('click', '#return-user', function() {
+    let workdayId = $(this).closest('.search-result-item').find('span').text().match(/\((\d+)\)/)[1];
+
+    if (confirm(`¿Deseas devolver al usuario con ID ${workdayId} a la lista de usuarios activos?`)) {
+        $.ajax({
+            url: 'php/return_user.php',
+            type: 'post',
+            data: { workday_id: workdayId },
+            success: function(response) {
+                alert(response);
+            },
+            error: function(xhr, status, error) {
+                console.error(error);
+            }
+        });
+    }
+});
+
+document.getElementById('delete-user').addEventListener('click', function() {
+  let selectedCheckboxes = document.querySelectorAll('.user-checkbox:checked');
+  let workday_id = Array.from(selectedCheckboxes).map(checkbox => checkbox.value);
+
+  if (confirm(`¿Deseas eliminar ${workday_id.length} usuarios?`)) {
+      $.ajax({
+          url: 'php/delete_user.php',
+          type: 'post',
+          data: { workday_id: workday_id },
+          success: function(response) {
+              alert(response);
+          },
+          error: function(xhr, status, error) {
+              console.error(error);
+          }
+      });
+  }
+  
+});

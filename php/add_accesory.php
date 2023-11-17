@@ -19,8 +19,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $detalle = $_POST["detalle"];
 
     if ($stmt->execute()) {
-        header("Location: ../index.html");
-        exit(); 
+        echo "Datos insertados correctamente";
     } else {
         echo "Error al insertar los datos: " . $stmt->error;
     }

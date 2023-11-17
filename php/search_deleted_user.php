@@ -16,7 +16,7 @@ if($search != ''){
         echo "<div class='search-result-item'>";
         echo "<span>".$row['nombre']." ".$row['apellido']." (".$row['workday_id'].")</span>";
         echo "<div class='search-result-item-actions'>";
-        echo "<i class='fas fa-rotate-left'></i>";
+        echo "<i id='return-user' class='fas fa-rotate-left'></i>";
         echo "</div>";
         echo "</div>";
     }
