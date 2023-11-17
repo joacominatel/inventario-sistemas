@@ -54,14 +54,14 @@ $usuarios_recientes = mysqli_fetch_all($result, MYSQLI_ASSOC);
             <li><a href="/inventario-sistemas/accesorios.php"><i class='bx bx-message-square-dots'></i>Accesorios</a>
             </li>
         </ul>
-        <!-- <ul class="side-menu">
+        <ul class="side-menu">
             <li>
-                <a href="#" class="logout">
-                    <i class='bx bx-log-out-circle'></i>
-                    Logout
+                <a href="#" class="login">
+                    <i class="fa-solid fa-right-to-bracket"></i>
+                    Login
                 </a>
             </li>
-        </ul> -->
+        </ul>
     </div>
 
     <div class="content">

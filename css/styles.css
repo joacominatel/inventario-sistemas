@@ -167,6 +167,10 @@ body {
   color: var(--danger);
 }
 
+.sidebar .side-menu li a.login {
+  color: var(--primary);
+}
+
 .content {
   position: relative;
   width: calc(100% - 230px);
@@ -608,6 +612,16 @@ body {
 #search-results .search-result-item .search-result-item-actions i.fa-trash-alt:hover {
   transition: all 0.3s ease;
   background-color: var(--light-danger);
+}
+
+#search-results .search-result-item .search-result-item-actions i.fa-print {
+  transition: all 0.3s ease;
+  background-color: var(--primary);
+}
+
+#search-results .search-result-item .search-result-item-actions i.fa-print:hover {
+  transition: all 0.3s ease;
+  background-color: var(--light-primary);
 }
 
 .content main .bottom-data .orders {
