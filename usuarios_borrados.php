@@ -1,3 +1,8 @@
+<?php
+session_start();
+
+$usuarioLogueado = isset($_SESSION['user_id']);
+?>
 <!DOCTYPE html>
 <html lang="en">
 

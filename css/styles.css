@@ -133,7 +133,7 @@ body {
   z-index: -1;
 }
 
-.sidebar .side-menu li a {
+.sidebar .side-menu li button {
   width: 100%;
   height: 100%;
   background: var(--light);
@@ -145,29 +145,31 @@ body {
   white-space: nowrap;
   overflow-x: hidden;
   transition: all 0.3s ease;
+  cursor: pointer;
+  border: none;
 }
 
-.sidebar .side-menu li.active a {
+.sidebar .side-menu li.active button {
   color: var(--success);
 }
 
-.sidebar.close .side-menu li a {
+.sidebar.close .side-menu li button {
   width: calc(48px - (4px * 2));
   transition: all 0.3s ease;
 }
 
-.sidebar .side-menu li a i {
+.sidebar .side-menu li button i {
   min-width: calc(60px - ((4px + 6px) * 2));
   display: flex;
   font-size: 1.6rem;
   justify-content: center;
 }
 
-.sidebar .side-menu li a.logout {
+.sidebar .side-menu li button.logout {
   color: var(--danger);
 }
 
-.sidebar .side-menu li a.login {
+.sidebar .side-menu li button.login {
   color: var(--primary);
 }
 
@@ -596,7 +598,7 @@ body {
 }
 
 #search-results .search-result-item .search-result-item-actions i.fa-eye {
-  background-color: var(--primary);
+  background-color: mediumpurple;
 }
 
 #search-results .search-result-item .search-result-item-actions i.fa-eye:hover {
@@ -1028,4 +1030,86 @@ body {
 
 .agregar-accesorio form input:last-child:hover:focus {
   border: 1px solid var(--light);
+}
+
+/* Estilo del modal */
+.login-modal {
+  display: none;
+  position: fixed;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
+  width: 400px;
+  background: var(--light);
+  border-radius: 20px;
+  padding: 24px;
+  z-index: 10000;
+  border: 1px solid var(--primary);
+}
+
+.login-modal .modal-content {
+  width: 90%;
+  margin: 0 auto;
+}
+
+.login-modal .modal-content .close {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  font-size: 1.5rem;
+  color: var(--danger);
+  cursor: pointer;
+}
+
+.login-modal .modal-content .close:hover {
+  transition: all 0.3s ease;
+  color: var(--danger);
+}
+
+.login-modal .modal-content form {
+  width: 100%;
+}
+
+.login-modal .modal-content form input {
+  width: 100%;
+  height: 36px;
+  padding: 0 16px;
+  border: none;
+  background: var(--grey);
+  border-radius: 36px;
+  outline: none;
+  color: var(--dark);
+  margin-bottom: 16px;
+}
+
+.login-modal .modal-content form input::placeholder {
+  color: var(--dark-grey);
+}
+
+.login-modal .modal-content form input:focus {
+  border: 1px solid var(--primary);
+}
+
+.login-modal .modal-content form input:last-child:hover {
+  transition: all 0.3s ease;
+  cursor: pointer;
+  background: var(--primary);
+}
+
+.login-modal .modal-content form button {
+  /* cancel button */
+  background-color: var(--danger);
+  color: var(--light);
+  padding: 0.7rem;
+  font-size: 14px;
+  justify-content: center;
+  border-radius: 30px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+.login-modal .modal-content form label {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--dark);
 }

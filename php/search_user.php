@@ -1,5 +1,8 @@
 <?php
 include './db_connection.php';
+session_start();
+
+$usuarioLogueado = isset($_SESSION['user_id']);
 
 $search = $_GET['search'] ?? '';
 
@@ -20,8 +23,12 @@ if($search != ''){
             echo "</div>";
             echo "<div class='search-result-item-actions'>";
                 echo "<a href='templates/baja.php?workday_id=".$row['workday_id']."' class='btn-baja' target='_blank'><i class=\"fa-solid fa-print\"></i></a>";
-                echo "<i class='fas fa-edit'></i>";
-                echo "<i class='fas fa-trash-alt'></i>";
+                if ($usuarioLogueado) {
+                    echo "<i class='fas fa-edit'></i>";
+                    echo "<i class='fas fa-trash-alt'></i>";
+                } else {
+                    echo "<i class='fas fa-eye'></i>";
+                }
             echo "</div>";
         echo "</div>";
     }

@@ -1,3 +1,9 @@
+<?php
+session_start();
+
+$usuarioLogueado = isset($_SESSION['user_id']);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -28,7 +34,7 @@
         </ul>
         <ul class="side-menu">
             <li>
-                <a href="#" class="login">
+                <a href="#" class="login" id="btn-login">
                     <i class="fa-solid fa-right-to-bracket"></i>
                     Login
                 </a>
@@ -52,8 +58,10 @@
                             <input id="search" type="search" placeholder="Buscar...">
                         </div>
                         <div class="functions">
+                            <?php if ($usuarioLogueado) { ?>
                             <i id="add-user" class="fas fa-plus"></i>
                             <i id="delete-user" class="fas fa-trash"></i>
+                            <?php } ?>
                         </div>
                     </div>
                     <div id="search-results">
@@ -63,8 +71,7 @@
                                 <i class="fas fa-edit"></i>
                                 <i class="fas fa-trash-alt"></i>
                             </div>
-                        </div> -->
-
+                        </div> -->  
                     </div>
                 </div>
             </div>

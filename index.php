@@ -1,5 +1,15 @@
 <?php
 include_once './php/db_connection.php';
+session_start();
+
+// Verificar si el usuario está logueado
+$usuarioLogueado = false;
+if (isset($_SESSION['user'])) {
+    $usuarioLogueado = true;
+} else {
+    // Redirigir al login
+    header('Location: ./php/login.php');
+}
 
 // obtener cantidad de usuarios activos
 $sql = "SELECT COUNT(*) AS total FROM usuarios";
@@ -56,10 +66,19 @@ $usuarios_recientes = mysqli_fetch_all($result, MYSQLI_ASSOC);
         </ul>
         <ul class="side-menu">
             <li>
-                <a href="#" class="login">
-                    <i class="fa-solid fa-right-to-bracket"></i>
-                    Login
-                </a>
+                <?php
+                if ($usuarioLogueado) { ?>
+                    <button href="#" id="btn-logout" class="logout">
+                        <i class="fa-solid fa-right-to-bracket"></i>
+                        Logout
+                    </button>
+                    <?php
+                } else { ?>
+                    <button href="#" id="btn-login" class="login">
+                        <i class="fa-solid fa-right-to-bracket"></i>
+                        Login
+                    </button>
+                <?php } ?>
             </li>
         </ul>
     </div>
@@ -144,81 +163,63 @@ $usuarios_recientes = mysqli_fetch_all($result, MYSQLI_ASSOC);
                         </thead>
                         <tbody>
                             <?php
-                $sql = "SELECT * FROM tabla_auditoria WHERE tabla = 'usuarios' ORDER BY timestamp DESC LIMIT 3";
-                $resultado = mysqli_query($conn, $sql);
+                            $sql = "SELECT * FROM tabla_auditoria WHERE tabla = 'usuarios' ORDER BY timestamp DESC LIMIT 3";
+                            $resultado = mysqli_query($conn, $sql);
 
-                while($fila = mysqli_fetch_assoc($resultado)) {
-                    $datos = $fila['accion'] == 'Borrado' ? $fila['datos_antiguos'] : $fila['datos_nuevos'];
-                    $accion = $fila['accion'];
-                    $datosNuevos = $fila['accion'] != 'Borrado' ? $fila['datos_nuevos'] : '';
-                
-                    // Ajuste de la expresión regular para coincidir con el formato proporcionado
-                    if (preg_match("/Nombre: (.*?), Apellido: (.*?),/", $datos, $matches)) {
-                        $nombre = $matches[1];
-                        $apellido = $matches[2];
-                    } else {
-                        // Valores por defecto en caso de no encontrar coincidencias
-                        $nombre = "Desconocido";
-                        $apellido = "Desconocido";
-                    }
-                
-                    // Determinar la clase del estado basado en la acción
-                    $estadoClase = '';
-                    switch ($fila['accion']) {
-                        case 'Creado':
-                            $estadoClase = 'status completed';
-                            break;
-                        case 'Modificado':
-                            $estadoClase = 'status process';
-                            break;
-                        case 'Borrado':
-                            $estadoClase = 'status pending';
-                            break;
-                    }
-                
-                    echo "<tr>";
-                    echo "<td><p>{$nombre} {$apellido}</p></td>";
-                    echo "<td>$datosNuevos</td>";
-                    echo "<td><span class='$estadoClase'>{$fila['accion']}</span></td>";
-                    echo "</tr>";
-                }
-                
-                ?>
+                            while ($fila = mysqli_fetch_assoc($resultado)) {
+                                $datos = $fila['accion'] == 'Borrado' ? $fila['datos_antiguos'] : $fila['datos_nuevos'];
+                                $accion = $fila['accion'];
+                                $datosNuevos = $fila['accion'] != 'Borrado' ? $fila['datos_nuevos'] : '';
+
+                                // Ajuste de la expresión regular para coincidir con el formato proporcionado
+                                if (preg_match("/Nombre: (.*?), Apellido: (.*?),/", $datos, $matches)) {
+                                    $nombre = $matches[1];
+                                    $apellido = $matches[2];
+                                } else {
+                                    // Valores por defecto en caso de no encontrar coincidencias
+                                    $nombre = "Desconocido";
+                                    $apellido = "Desconocido";
+                                }
+
+                                // Determinar la clase del estado basado en la acción
+                                $estadoClase = '';
+                                switch ($fila['accion']) {
+                                    case 'Creado':
+                                        $estadoClase = 'status completed';
+                                        break;
+                                    case 'Modificado':
+                                        $estadoClase = 'status process';
+                                        break;
+                                    case 'Borrado':
+                                        $estadoClase = 'status pending';
+                                        break;
+                                }
+
+                                echo "<tr>";
+                                echo "<td><p>{$nombre} {$apellido}</p></td>";
+                                echo "<td>$datosNuevos</td>";
+                                echo "<td><span class='$estadoClase'>{$fila['accion']}</span></td>";
+                                echo "</tr>";
+                            }
+
+                            ?>
                         </tbody>
                     </table>
                 </div>
 
-                <!-- <div c lass="reminders">
-                    <div class="header">
-                        <i class='bx bx-note'></i>
-                        <h3>Recordatorios</h3>
-                        <i class='bx bx-filter'></i>
-                        <i class='bx bx-plus'></i>
-                    </div>
-                    <ul class="task-list">
-                        <li class="completed">
-                            <div class="task-title">
-                                <i class='bx bx-check-circle'></i>
-                                <p>X</p>
-                            </div>
-                            <i class='bx bx-dots-vertical-rounded'></i>
-                        </li>
-                        <li class="completed">
-                            <div class="task-title">
-                                <i class='bx bx-check-circle'></i>
-                                <p>Analyse Our Site</p>
-                            </div>
-                            <i class='bx bx-dots-vertical-rounded'></i>
-                        </li>
-                        <li class="not-completed">
-                            <div class="task-title">
-                                <i class='bx bx-x-circle'></i>
-                                <p>Play Footbal</p>
-                            </div>
-                            <i class='bx bx-dots-vertical-rounded'></i>
-                        </li>
-                    </ul>
-                </div> -->
+            </div>
+            <div id="loginModal" class="login-modal">
+                <div class="modal-content">
+                    <span class="close">&times;</span>
+                    <form id="loginForm" action="./php/login.php" method="post">
+                        <label for="user">Usuario:</label>
+                        <input type="text" id="user" name="user"><br><br>
+                        <label for="password">Contraseña:</label>
+                        <input type="password" id="password" name="password"><br><br>
+                        <input type="submit" id="submitBtn" value="Iniciar Sesión">
+                        <button type="button" id="cancelButton">Cancelar</button>
+                    </form>
+                </div>
             </div>
 
         </main>

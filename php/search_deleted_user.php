@@ -1,5 +1,9 @@
 <?php
 include './db_connection.php';
+session_start();
+
+$usuarioLogueado = isset($_SESSION['user_id']);
+
 
 $search = $_GET['search'] ?? '';
 
@@ -16,7 +20,11 @@ if($search != ''){
         echo "<div class='search-result-item'>";
         echo "<span>".$row['nombre']." ".$row['apellido']." (".$row['workday_id'].")</span>";
         echo "<div class='search-result-item-actions'>";
-        echo "<i id='return-user' class='fas fa-rotate-left'></i>";
+        if ($usuarioLogueado) {
+            echo "<i id='return-user' class='fas fa-rotate-left'></i>";
+        } else {
+            echo "<i class='fas fa-eye'></i>";
+        }
         echo "</div>";
         echo "</div>";
     }
