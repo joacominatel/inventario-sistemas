@@ -20,11 +20,9 @@ if($search != ''){
         echo "<div class='search-result-item'>";
         echo "<span>".$row['nombre']." ".$row['apellido']." (".$row['workday_id'].")</span>";
         echo "<div class='search-result-item-actions'>";
-        if ($usuarioLogueado) {
-            echo "<i id='return-user' class='fas fa-rotate-left'></i>";
-        } else {
-            echo "<i class='fas fa-eye'></i>";
-        }
+
+        echo "<i class='fas fa-rotate-left return-user' data-user-id='".$row['workday_id']."'></i>";
+
         echo "</div>";
         echo "</div>";
     }

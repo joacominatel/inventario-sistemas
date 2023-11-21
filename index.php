@@ -2,16 +2,6 @@
 include_once './php/db_connection.php';
 session_start();
 
-// Verificar si el usuario está logueado
-$usuarioLogueado = false;
-if (isset($_SESSION['user'])) {
-    $usuarioLogueado = true;
-} else {
-    // Redirigir al login
-    header('Location: ./php/login.php');
-}
-
-// obtener cantidad de usuarios activos
 $sql = "SELECT COUNT(*) AS total FROM usuarios";
 $result = mysqli_query($conn, $sql);
 $row = mysqli_fetch_assoc($result);
@@ -58,27 +48,24 @@ $usuarios_recientes = mysqli_fetch_all($result, MYSQLI_ASSOC);
             <div class="logo-name"><span>Dentsu</span></div>
         </a>
         <ul class="side-menu">
-            <li class="active"><a href="/inventario-sistemas"><i class='bx bxs-dashboard'></i>Inicio</a></li>
-            <li><a href="/inventario-sistemas/usuarios.php"><i class='bx bx-group'></i>Usuarios</a></li>
-            <li><a href="/inventario-sistemas/usuarios_borrados.php"><i class='bx bx-analyse'></i>Borrados</a></li>
-            <li><a href="/inventario-sistemas/accesorios.php"><i class='bx bx-message-square-dots'></i>Accesorios</a>
+            <li class="active"><a href="./index.php"><i class='bx bxs-dashboard'></i>Inicio</a></li>
+            <li><a href="./usuarios.php"><i class='bx bx-group'></i>Usuarios</a></li>
+            <li><a href="./usuarios_borrados.php"><i class='bx bx-analyse'></i>Borrados</a></li>
+            <li><a href="./accesorios.php"><i class='bx bx-message-square-dots'></i>Accesorios</a>
             </li>
         </ul>
         <ul class="side-menu">
             <li>
-                <?php
-                if ($usuarioLogueado) { ?>
-                    <button href="#" id="btn-logout" class="logout">
-                        <i class="fa-solid fa-right-to-bracket"></i>
-                        Logout
-                    </button>
-                    <?php
-                } else { ?>
-                    <button href="#" id="btn-login" class="login">
-                        <i class="fa-solid fa-right-to-bracket"></i>
-                        Login
-                    </button>
-                <?php } ?>
+                        <!-- <button href="#" id="btn-logout" class="logout">
+                            <i class="fa-solid fa-right-to-bracket"></i>
+                            Logout
+                        </button>
+
+                        <button href="#" id="btn-login" class="login">
+                            <i class="fa-solid fa-right-to-bracket"></i>
+                            Login
+                        </button> -->
+
             </li>
         </ul>
     </div>

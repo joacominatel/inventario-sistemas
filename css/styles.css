@@ -119,6 +119,7 @@ body {
 
 .fa-bars-staggered {
   margin-left: 20px;
+  cursor: pointer;
 }
 
 .sidebar .side-menu li.active::after {
@@ -171,6 +172,17 @@ body {
 
 .sidebar .side-menu li button.login {
   color: var(--primary);
+}
+
+.sidebar .side-menu li a {
+  color: var(--dark);
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  grid-gap: 16px;
+  padding: 0 16px;
+
 }
 
 .content {

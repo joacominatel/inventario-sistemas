@@ -48,18 +48,18 @@ $total_otros = $row['total'];
             <div class="logo-name"><span>Dentsu</span></div>
         </a>
         <ul class="side-menu">
-            <li><a href="/inventario-sistemas"><i class='bx bxs-dashboard'></i>Inicio</a></li>
-            <li><a href="/inventario-sistemas/usuarios.php"><i class='bx bx-group'></i>Usuarios</a></li>
-            <li><a href="/inventario-sistemas/usuarios_borrados.php"><i class='bx bx-analyse'></i>Borrados</a></li>
-            <li class="active"><a href="/inventario-sistemas/accesorios.php"><i class='bx bx-message-square-dots'></i>Accesorios</a></li>
+            <li><a href="./index.php"><i class='bx bxs-dashboard'></i>Inicio</a></li>
+            <li><a href="./usuarios.php"><i class='bx bx-group'></i>Usuarios</a></li>
+            <li><a href="./usuarios_borrados.php"><i class='bx bx-analyse'></i>Borrados</a></li>
+            <li class="active"><a href="./accesorios.php"><i class='bx bx-message-square-dots'></i>Accesorios</a></li>
         </ul>
         <ul class="side-menu">
-            <li>
+            <!-- <li>
                 <a href="#" class="login">
                     <i class="fa-solid fa-right-to-bracket"></i>
                     Login
                 </a>
-            </li>
+            </li> -->
         </ul>
     </div>
 
