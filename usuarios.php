@@ -10,6 +10,14 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="css/styles.css">
     <title>Inventario Dentsu | Usuarios</title>
+    <script>
+        (function() {
+            var savedTheme = localStorage.getItem('theme') || 'light'; 
+            if (savedTheme === 'dark') {
+                document.documentElement.classList.add('dark');
+            }
+        })();
+    </script>
 </head>
 
 <body>
