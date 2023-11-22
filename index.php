@@ -1,6 +1,5 @@
 <?php
 include_once './php/db_connection.php';
-session_start();
 
 $sql = "SELECT COUNT(*) AS total FROM usuarios";
 $result = mysqli_query($conn, $sql);
@@ -20,7 +19,7 @@ $row = mysqli_fetch_assoc($result);
 $total_accesorios = $row['total'];
 
 // obtener usuarios recientemente creados (ultimos 3)
-$sql = "SELECT * FROM usuarios ORDER BY workday_id DESC LIMIT 3";
+$sql = "SELECT * FROM usuarios ORDER BY workday_id DESC";
 $result = mysqli_query($conn, $sql);
 $usuarios_recientes = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
@@ -39,8 +38,8 @@ $usuarios_recientes = mysqli_fetch_all($result, MYSQLI_ASSOC);
     <link rel="stylesheet" href="css/styles.css">
     <title>Inventario Dentsu | Admin</title>
     <script>
-        (function() {
-            var savedTheme = localStorage.getItem('theme') || 'light'; 
+        (function () {
+            var savedTheme = localStorage.getItem('theme') || 'light';
             if (savedTheme === 'dark') {
                 document.documentElement.classList.add('dark');
             }
@@ -64,7 +63,7 @@ $usuarios_recientes = mysqli_fetch_all($result, MYSQLI_ASSOC);
         </ul>
         <ul class="side-menu">
             <li>
-                        <!-- <button href="#" id="btn-logout" class="logout">
+                <!-- <button href="#" id="btn-logout" class="logout">
                             <i class="fa-solid fa-right-to-bracket"></i>
                             Logout
                         </button>
@@ -146,6 +145,14 @@ $usuarios_recientes = mysqli_fetch_all($result, MYSQLI_ASSOC);
                     <div class="header">
                         <i class='bx bx-receipt'></i>
                         <h3>Usuarios modificados recientemente</h3>
+                        <div id="filtro-menu" class="filtro-menu" style="display:none;">
+                            <ul>
+                                <li onclick="filtrar('Creado')">Creado</li>
+                                <li onclick="filtrar('Modificado')">Modificado</li>
+                                <li onclick="filtrar('Borrado')">Borrado</li>
+                                <li onclick="filtrar('Todo')">Ver Todo</li>
+                            </ul>
+                        </div>
                         <i class='bx bx-filter'></i>
                     </div>
                     <table>
@@ -158,7 +165,7 @@ $usuarios_recientes = mysqli_fetch_all($result, MYSQLI_ASSOC);
                         </thead>
                         <tbody>
                             <?php
-                            $sql = "SELECT * FROM tabla_auditoria WHERE tabla = 'usuarios' ORDER BY timestamp DESC LIMIT 3";
+                            $sql = "SELECT * FROM tabla_auditoria WHERE tabla = 'usuarios' ORDER BY timestamp DESC LIMIT 8";
                             $resultado = mysqli_query($conn, $sql);
 
                             while ($fila = mysqli_fetch_assoc($resultado)) {

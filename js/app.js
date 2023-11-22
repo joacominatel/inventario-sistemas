@@ -60,3 +60,20 @@ document.addEventListener("DOMContentLoaded", function() {
     sideBar.classList.remove("close");
   }
 });
+
+// boton filtro
+document.querySelector('.bx-filter').addEventListener('click', function() {
+  var menu = document.getElementById('filtro-menu');
+  menu.style.display = menu.style.display === 'none' ? 'block' : 'none';
+});
+
+function filtrar(accion) {
+  var filas = document.querySelectorAll('.orders tbody tr');
+  filas.forEach(function(row) {
+      if (accion === 'Todo' || row.querySelector('.status').textContent.includes(accion)) {
+          row.style.display = '';
+      } else {
+          row.style.display = 'none';
+      }
+  });
+}
