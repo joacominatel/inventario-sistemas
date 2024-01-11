@@ -587,6 +587,10 @@ body {
   font-weight: 600;
 }
 
+#search-results .search-result-item.selected-user {
+  background-color: var(--light-primary);
+}
+
 #search-results .search-result-item .search-result-item-actions {
   display: flex;
   flex-direction: row;

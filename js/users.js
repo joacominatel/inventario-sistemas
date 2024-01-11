@@ -1,3 +1,20 @@
+let selectedUsers = {};
+
+$(document).on("change", ".user-checkbox", function () {
+  let userId = $(this).val();
+  let userDiv = $(this).closest(".search-result-item");
+
+  if ($(this).is(":checked")) {
+    userDiv.addClass("selected-user");
+    selectedUsers[userId] = $(this)
+      .closest(".search-result-item")
+      .prop("outerHTML");
+  } else {
+    userDiv.removeClass("selected-user");
+    delete selectedUsers[userId];
+  }
+});
+
 $(document).ready(function () {
   $('input[type="search"]').on("keyup", function () {
     var query = $(this).val();
@@ -8,10 +25,37 @@ $(document).ready(function () {
         data: { search: query },
         success: function (data) {
           $("#search-results").html(data);
+
+          // Revisar y marcar los checkboxes de los usuarios seleccionados
+          for (let userId in selectedUsers) {
+            let checkbox = $(`input.user-checkbox[value="${userId}"]`);
+            if (checkbox.length) {
+              checkbox.prop("checked", true);
+              checkbox.closest(".search-result-item").addClass("selected-user");
+            } else {
+              // Si el usuario no está en los resultados actuales, lo añadimos
+              $("#search-results").append(selectedUsers[userId]);
+              $(`input.user-checkbox[value="${userId}"]`).prop("checked", true);
+            }
+          }
         },
       });
     } else {
       $("#search-results").html("");
+
+      // Mostrar y marcar los usuarios seleccionados aunque no haya búsqueda
+      for (let userId in selectedUsers) {
+        if (
+          !$("#search-results").find(`input.user-checkbox[value="${userId}"]`)
+            .length
+        ) {
+          $("#search-results").append(selectedUsers[userId]);
+        }
+        $(`input.user-checkbox[value="${userId}"]`).prop("checked", true);
+        $(`input.user-checkbox[value="${userId}"]`)
+          .closest(".search-result-item")
+          .addClass("selected-user");
+      }
     }
   });
 });
@@ -212,6 +256,8 @@ document.getElementById("delete-user").addEventListener("click", function () {
         data: { workday_id: workday_id },
         success: function (response) {
           alert(response);
+          // recargar la página
+          location.reload();
         },
         error: function (xhr, status, error) {
           console.error(error);

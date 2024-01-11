@@ -5,3 +5,6 @@ agregar_accesorio_backup.php
 firma-admin.png
 favicon.ico
 user-div.html
+registro.log
+phpinfo.php
+generate_log.py
