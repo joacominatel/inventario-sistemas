@@ -647,6 +647,22 @@ body {
   flex-basis: 500px;
 }
 
+.orders .header .search-container {
+  position: relative;
+  width: 67%;
+}
+
+.orders .header .search-container input {
+  width: 100%;
+  height: 36px;
+  padding: 0 16px;
+  border: none;
+  background: var(--grey);
+  border-radius: 36px;
+  outline: none;
+  color: var(--dark);
+}
+
 .content main .bottom-data .orders table {
   width: 100%;
   border-collapse: collapse;

@@ -120,6 +120,9 @@ $total_otros = $row['total'];
                 <div class="orders">
                     <div class="header">
                         <h2>Accesorios</h2>
+                        <div class="search-container">
+                            <input type="text" id="search-accessory" placeholder="Buscar por nombre...">
+                        </div>
                         <div class="functions">
                             <i id="add-accessory" class="fas fa-plus"></i>
                         </div>

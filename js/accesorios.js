@@ -3,6 +3,13 @@ $(document).ready(function() {
         var tipoAccesorio = $(this).data('accesorio');
         cargarAccesorios(tipoAccesorio);
     });
+
+    $('#search-accessory').on('input', function() {
+        var searchValue = $(this).val().toLowerCase();
+        $('#bottom-data-accesorios tr').filter(function() {
+            $(this).toggle($(this).text().toLowerCase().indexOf(searchValue) > -1);
+        })
+    })
 });
 
 function cargarAccesorios(tipoAccesorio) {
